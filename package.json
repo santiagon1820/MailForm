@@ -1,0 +1,21 @@
+{
+  "name": "",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astro-openapi/backend": "^0.0.3",
+    "@astro-openapi/bundler": "^0.0.2",
+    "@astro-openapi/client": "^0.0.5",
+    "@astro-openapi/gui-swagger": "^0.0.5"
+  },
+  "devDependencies": {
+    "astro": "^5.13.5",
+    "swagger-jsdoc": "^6.2.8"
+  }
+}
