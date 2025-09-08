@@ -1,10 +1,10 @@
 export const prerender = false;
 
 import type { APIRoute } from "astro";
-import { HelloController } from "../../controllers/HelloController";
+import { MailSenderController } from "../../controllers/MailSenderController";
 
+// GET para los endpoints de prueba
 export const GET: APIRoute = async ({ params }) => {
-  // Normalizamos params.api a un array de strings
   const segments: string[] = Array.isArray(params.api)
     ? params.api
     : params.api
@@ -14,14 +14,27 @@ export const GET: APIRoute = async ({ params }) => {
   const path = segments.join("/");
 
   switch (path) {
-    case "hello":
-      return HelloController.sayHello();
+    default:
+      return new Response(JSON.stringify({ error: "Endpoint no válido" }), {
+        status: 404,
+        headers: { "Content-Type": "application/json" },
+      });
+  }
+};
 
-    case "bye":
-      return HelloController.sayBye();
+// POST para enviar correos
+export const POST: APIRoute = async ({ params, request }) => {
+  const segments: string[] = Array.isArray(params.api)
+    ? params.api
+    : params.api
+    ? [params.api]
+    : [];
 
-    case "bye/api":
-      return HelloController.sayByeAPI();
+  const path = segments.join("/");
+
+  switch (path) {
+    case "sendMail":
+      return MailSenderController.sendMail(request);
 
     default:
       return new Response(JSON.stringify({ error: "Endpoint no válido" }), {

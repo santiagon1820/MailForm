@@ -16,28 +16,54 @@ const options = {
     ],
     components: {
       schemas: {
-        Saludo: {
+        SendMail: {
           type: "object",
           properties: {
-            message: {
-              type: "string",
-              example: "¡Hola desde Astro 👋!"
+            success: {
+              type: "boolean",
+              example: true
+            },
+            response: {
+              type: "object",
+              properties: {
+                code: {
+                  type: "integer",
+                  example: 200
+                },
+                message: {
+                  type: "string",
+                  example: "Se ha enviado correctamente"
+                }
+              }
             }
           }
         },
-        Despedida: {
+        ErrorResponse: {
           type: "object",
           properties: {
-            message: {
-              type: "string",
-              example: "Adiós desde Astro 👋"
+            success: {
+              type: "boolean",
+              example: false
+            },
+            response: {
+              type: "object",
+              properties: {
+                code: {
+                  type: "integer",
+                  example: 400
+                },
+                message: {
+                  type: "string",
+                  example: "Faltan datos obligatorios"
+                }
+              }
             }
           }
         }
       }
     }
   },
-  apis: ["src/controllers/**/*.ts"], // donde tienes tus @swagger
+  apis: ["src/controllers/**/*.ts"],
 };
 
 export async function GET() {

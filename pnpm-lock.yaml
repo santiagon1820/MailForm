@@ -20,6 +20,9 @@ importers:
       '@astro-openapi/gui-swagger':
         specifier: ^0.0.5
         version: 0.0.5
+      nodemailer:
+        specifier: ^7.0.6
+        version: 7.0.6
     devDependencies:
       astro:
         specifier: ^5.13.5
@@ -1357,6 +1360,10 @@ packages:
 
   node-mock-http@1.0.2:
     resolution: {integrity: sha512-zWaamgDUdo9SSLw47we78+zYw/bDr5gH8pH7oRRs8V3KmBtu8GLgGIbV2p/gRPd3LWpEOpjQj7X1FOU3VFMJ8g==}
+
+  nodemailer@7.0.6:
+    resolution: {integrity: sha512-F44uVzgwo49xboqbFgBGkRaiMgtoBrBEWCVincJPK9+S9Adkzt/wXCLKbf7dxucmxfTI5gHGB+bEmdyzN6QKjw==}
+    engines: {node: '>=6.0.0'}
 
   normalize-path@3.0.0:
     resolution: {integrity: sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==}
@@ -3395,6 +3402,8 @@ snapshots:
       whatwg-url: 5.0.0
 
   node-mock-http@1.0.2: {}
+
+  nodemailer@7.0.6: {}
 
   normalize-path@3.0.0: {}
 
