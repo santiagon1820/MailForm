@@ -1,4 +1,6 @@
+// @ts-ignore
 import nodemailer from "nodemailer";
+import { getLocalIp } from "./ipController.ts";
 
 export class MailSenderController {
   /**
@@ -50,10 +52,12 @@ export class MailSenderController {
   */
   static async sendMail(request: Request) {
     try {
-      // 1. Leer el body
+      // 0. Obtener la ip solo pruebas 
+      const localIp = getLocalIp();
+
+      // 1. Leer body
       const { nombres, apellidos, correo, mensaje } = await request.json();
 
-      // 2. Validación básica
       if (!nombres || !apellidos || !correo || !mensaje) {
         return new Response(
           JSON.stringify({
@@ -64,7 +68,19 @@ export class MailSenderController {
         );
       }
 
-      // 3. Configurar el transporte
+      // 2. Detectar dominio que hace la petición
+      const origin = request.headers.get("origin") || "";
+      const referer = request.headers.get("referer") || "";
+
+      // 3. Definir destinatario según dominio
+      let destinatario = import.meta.env.MAIL_SENDER;
+      if (origin.includes("forticus")) {
+        destinatario = "detad16426@inupup.com";
+      }else if (origin.includes(localIp)){
+        destinatario = "detad16426@inupup.com";
+      }
+
+      // 4. Configurar transporte
       const transporter = nodemailer.createTransport({
         host: import.meta.env.SMTP_SERVER,
         port: Number(import.meta.env.SMTP_PORT),
@@ -75,21 +91,21 @@ export class MailSenderController {
         },
       });
 
-      // 4. Enviar correo
+      // 5. Enviar correo
       await transporter.sendMail({
         from: import.meta.env.MAIL_SENDER,
-        to: import.meta.env.MAIL_SENDER,
+        to: destinatario,
         subject: `Nuevo mensaje de contacto - ${nombres} ${apellidos}`,
-        text: `De: ${nombres} ${apellidos} <${correo}>\n\n${mensaje}`,
+        text: `De: ${nombres} ${apellidos} <${correo}>\n\n${mensaje}\n\n---\nOrigin: ${origin}\nReferer: ${referer}`,
         html: `
           <p><strong>Nombre:</strong> ${nombres} ${apellidos}</p>
           <p><strong>Correo:</strong> ${correo}</p>
           <p><strong>Mensaje:</strong></p>
-          <p>${mensaje}</p>
+          <p>${mensaje}</p>          
         `,
       });
 
-      // 5. Respuesta exitosa
+      // 6. Respuesta exitosa
       return new Response(
         JSON.stringify({
           success: true,

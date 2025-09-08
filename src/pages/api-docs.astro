@@ -1,13 +1,8 @@
 ---
-import OpenApiGuiSwagger from '@astro-openapi/gui-swagger/OpenApiGuiSwagger.astro';
+import Layout from "../layouts/Layout.astro";
+import OpenApiGuiSwagger from "@astro-openapi/gui-swagger/OpenApiGuiSwagger.astro";
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>MailForm - Docs</title>
-</head>
-<body>
-    <OpenApiGuiSwagger schemaUrl="/api/openapi.json" />
-</body>
-</html>
+<Layout title="MailForm - Docs">
+  <OpenApiGuiSwagger schemaUrl="/api/openapi.json" />
+</Layout>

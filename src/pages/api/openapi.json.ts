@@ -1,7 +1,12 @@
+import os from "os";
+// @ts-ignore
+import swaggerJSDoc from "swagger-jsdoc";
+import { getLocalIp } from "../../controllers/ipController.ts";
+
 export const prerender = false;
 const port = import.meta.env.PORT || 4321;
 
-import swaggerJSDoc from "swagger-jsdoc";
+const localIp = getLocalIp();
 
 const options = {
   definition: {
@@ -12,7 +17,8 @@ const options = {
       description: "MailForm Api de formularios"
     },
     servers: [
-      { url: `http://localhost:${port}`, description: "Servidor local" }
+      { url: `http://localhost:${port}`, description: "Servidor local" },
+      { url: `http://${localIp}:${port}`, description: "Servidor local" }
     ],
     components: {
       schemas: {

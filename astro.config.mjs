@@ -5,5 +5,9 @@ export default defineConfig({
     optimizeDeps: {
       exclude: ["swagger-jsdoc"],
     },
+    server: {
+      host: true,
+      allowedHosts: ["localhost", "test.test"],
+    },
   },
 });
