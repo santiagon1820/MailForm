@@ -12,9 +12,9 @@ const options = {
   definition: {
     openapi: "3.0.3",
     info: {
-      title: "MailForm",
+      title: "Online API",
       version: "1.0.0.0",
-      description: "MailForm Api de formularios"
+      description: "Online API - Desarrollo de endpoints para web"
     },
     servers: [
       { url: `http://localhost:${port}`, description: "Servidor local" },
