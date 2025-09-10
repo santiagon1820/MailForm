@@ -1,6 +1,5 @@
 // @ts-ignore
 import nodemailer from "nodemailer";
-import { getLocalIp } from "./ipController.ts";
 
 export class MailSenderController {
   /**
@@ -52,9 +51,6 @@ export class MailSenderController {
   */
   static async sendMail(request: Request) {
     try {
-      // 0. Obtener la ip solo pruebas 
-      const localIp = getLocalIp();
-
       // 1. Leer body
       const { nombres, apellidos, correo, mensaje } = await request.json();
 
@@ -76,7 +72,7 @@ export class MailSenderController {
       let destinatario = import.meta.env.MAIL_SENDER;
       if (origin.includes("forticus")) {
         destinatario = "detad16426@inupup.com";
-      }else if (origin.includes(localIp)){
+      }else if (origin.includes("merkan")){
         destinatario = "detad16426@inupup.com";
       }
 

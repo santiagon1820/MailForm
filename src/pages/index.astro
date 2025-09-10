@@ -1,73 +1,44 @@
 ---
 import Layout from '../layouts/Layout.astro';
-const year = new Date().getFullYear();
 ---
+
 <Layout title="MailForm - Inicio">
-<html lang="es">
-<head>
-    <link rel="stylesheet" href="/css/index.css" />
-</head>
-<body>
-    <header>
-        <div class="container">
-            <h1>MailForm API</h1>
-            <button class="menu-toggle" aria-label="Abrir menú">☰</button>
-            <nav id="main-nav">
-                <ul>
-                    <li><a href="/">Inicio</a></li>
-                    <li><a href="/api-docs">Documentación</a></li>
-                </ul>
-            </nav>
+  <section id="hero" class="hero">
+    <div class="container">
+      <h2>Bienvenido a MailForm API</h2>
+      <p>Una solución robusta y eficiente para envío de formularios automatizados</p>
+      <a href="/api-docs" class="btn-primary">Probar API</a>
+    </div>
+  </section>
+
+  <section id="features" class="features">
+    <div class="container">
+      <h2>Características Principales</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>Alto Rendimiento</h3>
+          <p>Diseñada para ofrecer respuestas rápidas y eficientes incluso bajo alta demanda.</p>
         </div>
-    </header>
-
-    <main>
-        <section id="hero" class="hero">
-            <div class="container">
-                <h2>Bienvenido a MailForm API</h2>
-                <p>Una solución robusta y eficiente para envio de formularios automatizados</p>
-                <a href="/api-docs" class="btn-primary">Probar API</a>
-            </div>
-        </section>
-
-        <section id="features" class="features">
-            <div class="container">
-                <h2>Características Principales</h2>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">⚡</div>
-                        <h3>Alto Rendimiento</h3>
-                        <p>Diseñada para ofrecer respuestas rápidas y eficientes incluso bajo alta demanda.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🔒</div>
-                        <h3>Segura</h3>
-                        <p>Implementa los más altos estándares de seguridad para proteger tus datos.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">📖</div>
-                        <h3>Documentada</h3>
-                        <p>Documentación clara y ejemplos prácticos para una fácil implementación.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="cta" class="cta">
-            <div class="container">
-                <h2>¿Listo para comenzar?</h2>
-                <p>Explora nuestra documentación completa y comienza a integrar nuestra API en tus proyectos.</p>
-                <a href="/api-docs" class="btn-secondary">Ver Documentación</a>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; {year} Mi API. Todos los derechos reservados.</p>
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3>Segura</h3>
+          <p>Implementa los más altos estándares de seguridad para proteger tus datos.</p>
         </div>
-    </footer>
-    <script src="/js/index.js" defer></script>
-</body>
-</html>
+        <div class="feature-card">
+          <div class="feature-icon">📖</div>
+          <h3>Documentada</h3>
+          <p>Documentación clara y ejemplos prácticos para una fácil implementación.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="cta" class="cta">
+    <div class="container">
+      <h2>¿Listo para comenzar?</h2>
+      <p>Explora nuestra documentación completa y comienza a integrar nuestra API en tus proyectos.</p>
+      <a href="/api-docs" class="btn-secondary">Ver Documentación</a>
+    </div>
+  </section>
 </Layout>

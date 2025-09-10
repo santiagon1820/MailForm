@@ -216,6 +216,12 @@ footer {
     text-align: center;
 }
 
+/* Solo afecta el main de api-docs */
+.api-docs-main {
+  padding-top: 40px; /* Ajusta según la altura de tu header */
+}
+
+
 /* Responsive */
 @media (max-width: 768px) {
     .menu-toggle {

@@ -1,0 +1,16 @@
+---
+// Puedes recibir props si quieres marcar la página activa
+const { currentPage = "/" } = Astro.props;
+---
+<header>
+  <div class="container">
+    <h1>MailForm API</h1>
+    <button class="menu-toggle" aria-label="Abrir menú">☰</button>
+    <nav id="main-nav">
+      <ul>
+        <li><a href="/" class={currentPage === "/" ? "active" : ""}>Inicio</a></li>
+        <li><a href="/api-docs" class={currentPage === "/api-docs" ? "active" : ""}>Documentación</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
