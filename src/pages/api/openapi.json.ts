@@ -44,7 +44,7 @@ const options = {
             }
           }
         },
-        ErrorResponse: {
+        BadRequest: {
           type: "object",
           properties: {
             success: {
@@ -61,6 +61,50 @@ const options = {
                 message: {
                   type: "string",
                   example: "Faltan datos obligatorios"
+                }
+              }
+            }
+          }
+        },        
+        OriginError: {
+          type: "object",
+          properties: {
+            success: {
+              type: "boolean",
+              example: false
+            },
+            response: {
+              type: "object",
+              properties: {
+                code: {
+                  type: "integer",
+                  example: 403
+                },
+                message: {
+                  type: "string",
+                  example: "El header 'Origin' es obligatorio para esta petición"
+                }
+              }
+            }
+          }
+        },
+        InternalServerError: {
+          type: "object",
+          properties: {
+            success: {
+              type: "boolean",
+              example: false
+            },
+            response: {
+              type: "object",
+              properties: {
+                code: {
+                  type: "integer",
+                  example: 500
+                },
+                message: {
+                  type: "string",
+                  example: "Error interno al enviar el correo"
                 }
               }
             }

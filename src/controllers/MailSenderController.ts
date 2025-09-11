@@ -47,13 +47,26 @@ export class MailSenderController {
   *         content:
   *           application/json:
   *             schema:
-  *               $ref: '#/components/schemas/ErrorResponse'
+  *               $ref: '#/components/schemas/BadRequest'
+  *       403:
+  *         description: Origen no enviado
+  *         content:
+  *           application/json:
+  *             schema:
+  *               $ref: '#/components/schemas/OriginError'
+  *       500:
+  *         description: Internal Server Error
+  *         content:
+  *           application/json:
+  *             schema:
+  *               $ref: '#/components/schemas/InternalServerError'
   */
   static async sendMail(request: Request) {
     try {
       // 1. Leer body
       const { nombres, apellidos, correo, mensaje } = await request.json();
 
+      // Si algún campo viene vacío retornar error ya que necesitamos saber todo lo que pedimos
       if (!nombres || !apellidos || !correo || !mensaje) {
         return new Response(
           JSON.stringify({
@@ -67,6 +80,17 @@ export class MailSenderController {
       // 2. Detectar dominio que hace la petición
       const origin = request.headers.get("origin") || "";
       const referer = request.headers.get("referer") || "";
+
+      // Si el origen es vacio devolvemos error ya que no sabremos a donde enviar
+      if (origin == "") {
+        return new Response(
+        JSON.stringify({
+          success: false,
+          response: { code: 403, message: "El header 'Origin' es obligatorio para esta petición" },
+        }),
+        { status: 403, headers: { "Content-Type": "application/json" } }
+      );
+      }
 
       // 3. Definir destinatario según dominio
       let destinatario = import.meta.env.MAIL_SENDER;
